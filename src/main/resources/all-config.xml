@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="ua.com.kisit.unit12"/>
+
+
+    <import resource="apple.xml"/>
+    <import resource="ibm.xml"/>
+    <import resource="sony.xml"/>
+
+<!--    <bean id="t1000" class="ua.com.kisit.unit12.RobotT1000">-->
+<!--        <constructor-arg index="3" ref="sonyLeg"/>-->
+<!--        <constructor-arg index="0" ref="ibmBase"/>-->
+<!--        <constructor-arg index="1" ref="appleHand"/>-->
+<!--        <constructor-arg index="2" ref="sonyHead"/>-->
+<!--        <property name="color" value="orange"/>-->
+<!--        <property name="model" value="t1001"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="t1001" class="ua.com.kisit.unit12.RobotT1000">-->
+<!--        <constructor-arg index="0" ref="appleBase"/>-->
+<!--        <constructor-arg index="1" ref="appleHand"/>-->
+<!--        <constructor-arg index="2" ref="sonyHead"/>-->
+<!--        <constructor-arg index="3" ref="sonyLeg"/>-->
+<!--        <property name="color" value="red"/>-->
+<!--        <property name="model" value="t1002"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="t1002" class="ua.com.kisit.unit12.RobotT1000">-->
+<!--        <property name="base" ref="appleBase"/>-->
+<!--        <property name="hand" ref="appleHand"/>-->
+<!--        <property name="head" ref="sonyHead"/>-->
+<!--        <property name="leg" ref="sonyLeg"/>-->
+<!--        <property name="color" value="red"/>-->
+<!--        <property name="model" value="t1002"/>-->
+<!--    </bean>-->
+
+</beans>

@@ -31,7 +31,8 @@ public class CategoryRepository extends ConnectionToDB implements CategoryDao {
         try {
             statement = connection.createStatement();
             statement.execute("INSERT INTO `category` (`name`, `description`, `image`) " +
-                    "VALUES ('"+category.getName()+"', '"+category.getDescription()+"', '"+category.getImage()+"')");
+                    "VALUES ('"+category.getName()+"', '"+category.getDescription()+
+                    "', '"+category.getImage()+"')");
 
             statement.close();
 
@@ -82,19 +83,18 @@ public class CategoryRepository extends ConnectionToDB implements CategoryDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {}
-            }
-
             if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {}
             }
-        }
 
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {}
+            }
+        }
 
         return category;
     }

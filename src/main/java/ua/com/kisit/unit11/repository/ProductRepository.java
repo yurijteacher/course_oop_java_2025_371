@@ -24,7 +24,8 @@ public class ProductRepository extends ConnectionToDB implements ProductDao {
         PreparedStatement preparedStatement = null;
 
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO `product` (`name`, `description`, `image`, `price`, `category_id`) VALUES (?, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO `product` (`name`, `description`, `image`, `price`, `category_id`) " +
+                    "VALUES (?, ?, ?, ?, ?)");
             preparedStatement.setString(1, products.getName());
             preparedStatement.setString(2, products.getDescription());
             preparedStatement.setString(3, products.getImage());
@@ -66,10 +67,11 @@ public class ProductRepository extends ConnectionToDB implements ProductDao {
         List<Products> products = new ArrayList<>();
 
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         try {
             preparedStatement = connection.prepareStatement("select * from `product`");
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Products product = new Products();
@@ -85,6 +87,19 @@ public class ProductRepository extends ConnectionToDB implements ProductDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {}
+            }
+
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {}
+            }
+
         }
 
 
