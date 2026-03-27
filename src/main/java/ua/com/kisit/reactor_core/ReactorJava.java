@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 import reactor.netty.http.server.HttpServer;
 
 import javax.swing.*;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class ReactorJava {
 
         Flux<Integer> flux2 = Flux.just(1, 2, 3);
         flux2.subscribe(e -> System.out.println(e));
+
         Mono<String> mono = Mono.just("Hello");
         mono.subscribe(e -> System.out.println(e));
 
@@ -40,7 +42,10 @@ public class ReactorJava {
         Flux<Integer> flux1 = Flux.fromIterable(list);
         flux1.subscribe(e -> System.out.println(e));
 
-        Flux.<String>generate(el -> el.next("Hello World")).take(10).subscribe(el -> System.out.println(el));
+        Flux.<String>generate(el ->
+                el.next("Hello World"))
+                .take(10)
+                .subscribe(el -> System.out.println(el));
 
 
         Flux.generate(() -> 2000,
@@ -58,13 +63,19 @@ public class ReactorJava {
                 new User(1L, "Vasya", "Pypkin", "s21@ukr.net"),
                 new User(2L, "Iva", "Pypkina", "s22@ukr.net"),
                 new User(3L, "Ivanna", "Pypkina", "s23@ukr.net")
+        ).delayElements(Duration.ofSeconds(1));
+
+        Flux<User> users1 = Flux.just(
+                new User(1L, "Sas","asd","adsd"),
+                new User(2L, "Qas","asd","adsd"),
+                new User(2L, "Aas","asd","adsd")
         );
 
 
         HandlerFunction<ServerResponse> usersList = req ->
                 ServerResponse
                         .ok()
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_EVENT_STREAM)
                         .body(users, User.class);
 
         HandlerFunction<ServerResponse> helloWorld = req ->
@@ -86,6 +97,9 @@ public class ReactorJava {
                 .bindNow();
 
          Thread.currentThread().join();
+
+
+
     }
 
 }

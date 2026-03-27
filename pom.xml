@@ -17,6 +17,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.2</version>
+    </parent>
+
+
     <dependencies>
 
 
@@ -75,7 +82,8 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>7.0.5</version>
+<!--            <version>7.0.5</version>-->
+<!--            <version> 6.1.5</version>-->
         </dependency>
 
     </dependencies>

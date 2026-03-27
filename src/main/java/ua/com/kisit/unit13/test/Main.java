@@ -14,13 +14,22 @@ public class Main {
 
         AuthorRepository authorRepository = (AuthorRepository) context.getBean("authorRepository");
 
-        authorRepository.save(new Author("Iva Pypkin"));
+//        authorRepository.save(new Author("Iva Pypkin"));
 
         List<Author> authors = authorRepository.findAll();
 
         for (Author a : authors){
             System.out.println(a);
         }
+
+//        authorRepository.delete(authorRepository.findById(4L));
+
+        List<Author> authors1 = authorRepository.findAll();
+
+        for (Author a : authors1){
+            System.out.println(a);
+        }
+
 
     }
 
